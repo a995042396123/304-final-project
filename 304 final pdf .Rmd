@@ -1,0 +1,58 @@
+---
+title: "304 final project "
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Abstract
+      
+       The various of sports have become indispensable part of human’s life. Especially there are millions of people pay attention to footballs and basketballs. There are huge potentials and profits on them. According to report, some of footballs such as Messi has earned billions of money. This report use different methods analysis the factors which will influence on the wages of football players. 
+
+Introduction 
+       
+       I find the wages of superstars can not only depend on their potentials, ages. Therefore in this report I pick a group of dataset on Kaggle about the football player on 2019 which include their name, age, wages and different kinds of abilities. I want to analysis which factors impact on the wages of football players
+         In my report, I prefer to make a Multiple Linear regression model to verify which variables have a good prediction to the play’s wages. Just one dataset will be applied on my test. However, there are so many variables on this dataset. Of course, I decide to pick some of them by the common sense firstly. Obviously, the variables like ID are not related to wages at all. After that, according to the variables that I picked I will make the conclusion of my report.
+         
+```{r}
+data <- read.csv("/Users/yuweisun/Desktop/data.csv")
+data$Wage <- as.numeric(data$Wage)
+data$Value <- as.numeric(data$Value)
+```
+
+```{r}
+model1 <- lm(Wage ~  Age+Potential+Value+Crossing+Finishing+HeadingAccuracy+Volleys, data = data)
+summary(model1)
+model2 <- lm(Wage ~  Age+Potential+Value+Crossing+HeadingAccuracy, data = data)
+summary(model2)
+
+```
+data
+
+ The Kaggle FIFA 19 complete player dataset will use on this report, which include the information of all the FIFA football players. There are 18207 observation in my target population. I will create a regression model based on, the age, the value, release clause
+
+
+Result
+
+
+         According to the common sense, We pick several variables include Age, Value, potential, Crossing, Finishing, Heading Accuracy, Volleys and we get the model equation, beta0 equal to 
+-21.594294 beta1 equal to 1.050291, beta2=0.619727, beta3=0.019684, beta4=0.060588, beta5=  0.037143, beta6=0.058943, beta7=-0.002343. 
+         However, when I get the summary table of them, I find the p-value of finishing and Volley is large than 0.05, Therefore, they are not significant and we need to delete them
+        As a result, we create a new model which only exist Age, Value, potential, Crossing, Heading Accuracy and beta0 equal to -21.594294 beta1 equal to 1.050291, beta2=0.619727, beta3=0.019684, beta4=  0.037143, beta5=0.058943. 
+        
+        
+        
+Discussion
+
+
+          In our report, we are interested in what will impact on the wage of football player’s. After we get the results. Obviously, the young people will be easy to get a higher wage, because they have more potentials. In addition, the players who have the higher ability to get the score include the Crossing speed, Heading Accuracy will have more wage, because the winning of the match is depend on the score of the games.
+          
+Reference 
+
+
+         Gadiya, K. (2018, December 21). FIFA 19 complete player dataset. Retrieved December 21, 2020, from https://www.kaggle.com/karangadiya/fifa19
+
